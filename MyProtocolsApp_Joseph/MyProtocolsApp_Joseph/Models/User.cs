@@ -51,7 +51,7 @@ namespace MyProtocolsApp_Joseph.Models
                     ("Users/ValidateLogin?username={0}&password={1}",
                     this.Email,this.Password);
                 //armamos la ruta completa al endpoint en el api
-
+                //Users/ValidateLogin?username=test1%40gmail.com&password=123
                 string URL = Services.APIConnection.ProductionPrefixURL + RouteSufix;
                 RestClient client = new RestClient(URL);
                 Request = new RestRequest(URL, Method.Get);

@@ -13,7 +13,8 @@ namespace MyProtocolsApp_Joseph.Services
         //donde el prefijo sera la parte del url que nunca cambiara y el sufgijo sera
         //la parte variable (nombre del controlador y sus parametros)
 
-        public static string ProductionPrefixURL = "http://192.168.0.6:45455/api/";
+        public static string ProductionPrefixURL = "http://192.168.0.40:45455/api/";
+        public static string TestingPrefixURL = "http://192.168.0.40:45455/api/";
 
         public static string ApikeyName = "Progra6Apikey";
         public static string ApikeyValue = "JosephProgra6AsdZxc12345";
