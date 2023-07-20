@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using MyProtocolsApp_Joseph.Models;
@@ -19,10 +20,13 @@ namespace MyProtocolsApp_Joseph.ViewModels
         //primero en formato de funciones clasicas
 
         public User MyUser { get; set; }
+        public UserRole MyUserRole { get; set; }
+
 
         public UserViewModel() 
         {
             MyUser = new User();
+            MyUserRole = new UserRole();
         }
 
         //funciones 
@@ -59,6 +63,71 @@ namespace MyProtocolsApp_Joseph.ViewModels
                 IsBusy = false;
             }
         }
+
+        //carga la lista de roles que se usaran por ejemplo en el picker de roles en la 
+        //creacion de un usuario nuevo
+        public async Task<List<UserRole>> GerUserRolesAsync() 
+        {
+            try
+            {
+                List<UserRole> roles = new List<UserRole>();
+                roles = await MyUserRole.GetAllUserRolesAsync();
+                if (roles == null)
+                {
+                    return null;
+                }
+                return roles;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public async Task<bool> AddUserAsync(string pEmail,
+                                             string pPassword,
+                                             string pName,
+                                             string pBackUpEmail,
+                                             string pPhoneNumber,
+                                             string pAddress,
+                                             int pUserRoleID) 
+        {
+            if (IsBusy) return false;
+            IsBusy = true;
+
+            try
+            {
+                MyUser = new User();
+                MyUser.Email = pEmail;
+                MyUser.Password = pPassword;    
+                MyUser.Name = pName;    
+                MyUser.BackUpEmail = pBackUpEmail;
+                MyUser.PhoneNumber = pPhoneNumber;
+                MyUser.Address = pAddress;  
+                MyUser.UserRoleId = pUserRoleID;
+
+                bool R = await MyUser.AddUserAsync();
+                return R;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally 
+            {
+                IsBusy = false;
+            }
+        }
+
+
+
+
+
+
+
+
 
 
 
