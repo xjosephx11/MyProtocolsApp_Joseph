@@ -89,6 +89,7 @@ namespace MyProtocolsApp_Joseph.Models
                 Request = new RestRequest(URL, Method.Post);
                 //agregamos mecanismo de seguridad, en este caso apikey
                 Request.AddHeader(Services.APIConnection.ApikeyName, Services.APIConnection.ApikeyValue);
+                Request.AddHeader(GlobalObjects.ContentType, GlobalObjects.MimeType);
                 //en  el caso de una operacion post debemos serializar
                 //el objeto para pasarlo como json al api
                 string SerializedModelObject = JsonConvert.SerializeObject(this);

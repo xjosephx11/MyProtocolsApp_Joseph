@@ -22,14 +22,38 @@ namespace MyProtocolsApp_Joseph.ViewModels
         public User MyUser { get; set; }
         public UserRole MyUserRole { get; set; }
 
+        public UserDTO MyUserDTO { get; set; }
 
         public UserViewModel() 
         {
             MyUser = new User();
             MyUserRole = new UserRole();
+            MyUserDTO = new UserDTO();
         }
 
         //funciones 
+
+        //la funcion que carga los datos del objeto de usuario global
+        public async Task<UserDTO> GetUserDataAsync(string pEmail) 
+        {
+            if (IsBusy) return null;
+            IsBusy = true;
+            try
+            {
+                UserDTO userDto = new UserDTO();
+                UserDTO userDTO= await MyUserDTO.GetUserInfo(pEmail);
+                if (userDTO == null) return null;
+                return userDTO;
+            }
+            catch (Exception)
+            {
+                return null;
+                throw;
+            }
+            finally { IsBusy = false; }
+        }
+
+
         //funcion para validar el ingreso del usuario al app por medio del login
 
         public async Task<bool> UserAccessValidation(string pEmail, string pPassword) 
@@ -120,6 +144,7 @@ namespace MyProtocolsApp_Joseph.ViewModels
                 IsBusy = false;
             }
         }
+
 
 
 
