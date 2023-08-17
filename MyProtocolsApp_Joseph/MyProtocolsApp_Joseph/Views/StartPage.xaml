@@ -33,13 +33,15 @@
                             x:Name="BtnProtocolManagment" Text="Protocol Managment"
                             BackgroundColor="Green" TextColor="White"
                             HeightRequest="150" WidthRequest="100"
-                            CornerRadius="25" BorderColor="#EEDDDD" BorderWidth="2"/>
+                            CornerRadius="25" BorderColor="#EEDDDD" BorderWidth="2"
+                            Clicked="BtnProtocolManagment_Clicked"/>
                     
                     <Button Grid.Column="1" Grid.Row="0"
                             x:Name="BtnUserManagment" Text="User Managment"
                             BackgroundColor="#D29346" TextColor="White"
                             HeightRequest="150" WidthRequest="100"
-                            CornerRadius="25" BorderColor="#EEDDDD" BorderWidth="2"/>
+                            CornerRadius="25" BorderColor="#EEDDDD" BorderWidth="2"
+                            Clicked="BtnUserManagment_Clicked"/>
 
                     <Button Grid.Column="0" Grid.Row="1"
                             x:Name="BtnCategoryManagment" Text="Category Managment"
@@ -52,6 +54,7 @@
                             BackgroundColor="#D2464B" TextColor="White"
                             HeightRequest="150" WidthRequest="100"
                             CornerRadius="25" BorderColor="#EEDDDD" BorderWidth="2"/>
+                    
                 </Grid>
             </FlexLayout>
         </ScrollView>

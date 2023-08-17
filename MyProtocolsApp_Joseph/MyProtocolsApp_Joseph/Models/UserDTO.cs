@@ -60,9 +60,83 @@ namespace MyProtocolsApp_Joseph.Models
             }
         }
 
+        public async Task<bool> UpdateUserAsync()
+        {
+            try
+            {
 
+                string RouteSufix = string.Format("Users/{0}",this.IDUsuario);
+                //armamos la ruta completa al endpoint en el api
+                string URL = Services.APIConnection.ProductionPrefixURL + RouteSufix;
+                RestClient client = new RestClient(URL);
+                Request = new RestRequest(URL, Method.Put);
+                //agregamos mecanismo de seguridad, en este caso apikey
+                Request.AddHeader(Services.APIConnection.ApikeyName, Services.APIConnection.ApikeyValue);
+                Request.AddHeader(GlobalObjects.ContentType, GlobalObjects.MimeType);
+                //en  el caso de una operacion post debemos serializar
+                //el objeto para pasarlo como json al api
+                string SerializedModelObject = JsonConvert.SerializeObject(this);
+                //agregamos el objeto serializado en el cuerpo del request
+                Request.AddBody(SerializedModelObject, GlobalObjects.MimeType);
 
+                //ejecutar la llamada al api
+                RestResponse response = await client.ExecuteAsync(Request);
+                //saber si las cosas salieron bien
+                HttpStatusCode statusCode = response.StatusCode;
+                if (statusCode == HttpStatusCode.OK)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+                throw;
+            }
+        }
 
+        //public async Task<bool> UpdatePasswordUserAsync()
+        //{
+        //    try
+        //    {
+
+        //        string RouteSufix = string.Format("Users/{0}",this.IDUsuario);
+        //        //armamos la ruta completa al endpoint en el api
+        //        string URL = Services.APIConnection.ProductionPrefixURL + RouteSufix;
+        //        RestClient client = new RestClient(URL);
+        //        Request = new RestRequest(URL, Method.Put);
+        //        //agregamos mecanismo de seguridad, en este caso apikey
+        //        Request.AddHeader(Services.APIConnection.ApikeyName, Services.APIConnection.ApikeyValue);
+        //        Request.AddHeader(GlobalObjects.ContentType, GlobalObjects.MimeType);
+        //        //en  el caso de una operacion post debemos serializar
+        //        //el objeto para pasarlo como json al api
+        //        string SerializedModelObject = JsonConvert.SerializeObject(this);
+        //        //agregamos el objeto serializado en el cuerpo del request
+        //        Request.AddBody(SerializedModelObject, GlobalObjects.MimeType);
+
+        //        //ejecutar la llamada al api
+        //        RestResponse response = await client.ExecuteAsync(Request);
+        //        //saber si las cosas salieron bien
+        //        HttpStatusCode statusCode = response.StatusCode;
+        //        if (statusCode == HttpStatusCode.OK)
+        //        {
+        //            return true;
+        //        }
+        //        else
+        //        {
+        //            return false;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        string message = ex.Message;
+        //        throw;
+        //    }
+        //}
 
 
 

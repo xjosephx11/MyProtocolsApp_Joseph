@@ -10,7 +10,7 @@ namespace MyProtocolsApp_Joseph.Models
 {
     public class User
     {
-        public RestRequest Request { get; set; }    
+        public RestRequest Request { get; set; }
 
         //en este ejemplo se usaran los mismos atributos que en el modelo del api
         //posteriormente en otra clase se usaran el DTO del usuario para simplificar
@@ -27,7 +27,7 @@ namespace MyProtocolsApp_Joseph.Models
         public bool? IsBlocked { get; set; }
         public int UserRoleId { get; set; }
 
-        public virtual UserRole? UserRole { get; set; }
+        public virtual UserRole UserRole { get; set; } = null!;
 
         public User()
         {

@@ -51,5 +51,10 @@ namespace MyProtocolsApp_Joseph.Views
                 await DisplayAlert(":(", "Something went wrong...", "fea perro!!");
             }
         }
+
+        private async void BtnCancel_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PopAsync();
+        }
     }
 }

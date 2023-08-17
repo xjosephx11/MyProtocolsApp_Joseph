@@ -22,5 +22,20 @@ namespace MyProtocolsApp_Joseph.Views
 		{
 			LblUserName.Text = GlobalObjects.MyLocalUser.Nombre.ToUpper();
 		}
-	}
+
+        private async void BtnUserManagment_Clicked(object sender, EventArgs e)
+        {
+			await Navigation.PushAsync(new UserManagementPage());
+        }
+
+        private async void BtnUserPasswordChange_Clicked(object sender, EventArgs e)
+        {
+			await Navigation.PushAsync (new UserPasswordChange());
+        }
+
+        private async void BtnProtocolManagment_Clicked(object sender, EventArgs e)
+        {
+			await Navigation.PushAsync(new ProtocolsListPage());
+        }
+    }
 }
